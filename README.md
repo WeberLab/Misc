@@ -1,5 +1,7 @@
 # Misc
 
+Please contribute miscellaneous scripts to the WeberLab here.
+
 ## FD.r
 
 FD.r is a Framewise displacement Rscript.  
