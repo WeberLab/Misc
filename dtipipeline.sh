@@ -7,8 +7,19 @@
 
 #usage: fsldti_pipeline data (.nii.gz .bval and .bvec file base name) b0oppositephase.nii.gz
 
+if [ $# -lt 2 ]; then
+    # TODO: print usage
+    echo "This script requires two arguments:
+First: basename for main dti (no suffix - .nii.gz .bval .bvec)
+Second: dti of opposite phase with suffix (.nii.gz)
+
+Example:
+dtipipeline.sh main_data opposite_phase_data.nii.gz"
+    exit 1
+fi
+
 dataname=$1
-b0oppositephasename=$2
+oppositephasename=$2
 
 #check if DTI data is even or uneven. If uneven, we are going to cut off the bottom slice
 echo "checking if images are even Z sliced. Otherwise cutting off bottom slice"
@@ -25,14 +36,15 @@ else
 	echo "odd: cutting off bottom slice";
 	newdim=$(expr $dim3 - 1)
 	fslroi $dataname.nii.gz $dataname.nii.gz 0 $dim1 0 $dim2 1 $newdim
-	fslroi $b0oppositephasename $b0oppositephasename 0 $dim1 0 $dim2 1 $newdim
+	fslroi $oppositephasename $oppositephasename 0 $dim1 0 $dim2 1 $newdim
 fi
 
 echo "fslroi"
-fslroi $dataname.nii.gz b0samephaseA $(expr $numdirections - 1) 1
+fslroi $dataname.nii.gz b0samephaseA 0 1
+fslroi $oppositephasename b0oppositephasename 0 1
 
 echo "fslmerge"
-fslmerge -t DTI_b0sonly b0samephaseA.nii.gz $b0oppositephasename
+fslmerge -t DTI_b0sonly b0samephaseA.nii.gz b0oppositephasename.nii.gz
 
 printf "0 1 0 0.1\n0 -1 0 0.1" > acqparams.txt
 
