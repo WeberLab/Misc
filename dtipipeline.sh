@@ -73,5 +73,3 @@ echo "dtifit"
 dtifit -k eddy_corrected_data -o dtifit -m DTI_topupapplied_brain_mask.nii.gz -r $dataname.bvec -b $dataname.bval
 
 
-echo "dtifit"
-dtifit -k eddy_corrected_data -o dtifit -m DTI_topupapplied_brain_mask.nii.gz -r $dataname.bvec -b $dataname.bval
