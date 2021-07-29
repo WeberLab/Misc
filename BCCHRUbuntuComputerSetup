@@ -12,6 +12,7 @@ sudo usermod -aG WeberLab anna.zhu
 sudo aptitude install xclip
 
 #copy mnt.sh script over
+#might have to make directories: WeberLab, aweber, etc. in /mnt/
 
 #Generate Github ssh-key
 ssh-keygen -t ed25519 -C "weberam2@gmail.com" #change e-mail
