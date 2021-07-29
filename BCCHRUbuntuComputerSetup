@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 sudo apt-get install aptitude
 sudo aptitude install htop
 sudo aptitude install cifs-utils
