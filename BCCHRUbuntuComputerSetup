@@ -12,7 +12,6 @@ sudo usermod -aG WeberLab anna.zhu
 sudo aptitude install xclip
 
 #copy mnt.sh script over
-#might have to make directories: WeberLab, aweber, etc. in /mnt/
 
 #Generate Github ssh-key
 ssh-keygen -t ed25519 -C "weberam2@gmail.com" #change e-mail
@@ -39,13 +38,27 @@ sudo apt-get --assume-yes install build-essential gcc g++ make binutils
 
 #NVIDIA/CUDA
 sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
-wget -O cuda.deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
-sudo dpkg -i cuda.deb
-sudo apt-get update
-sudo apt-get install cuda-toolkit-9.0 cuda-command-line-tools-9-0
+#wget -O cuda.deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
+#sudo dpkg -i cuda.deb
+#sudo apt-get update
+#sudo apt-get install cuda-toolkit-9.0 cuda-command-line-tools-9-0
 # 9.1
-wget -O cuda.deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-9-1_9.1.85-1_amd64.deb
-sudo aptitude install cuda-toolkit-9-1 cuda-command-line-tools-9-1
+#wget -O cuda.deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-9-1_9.1.85-1_amd64.deb
+#sudo aptitude install cuda-toolkit-9-1 cuda-command-line-tools-9-1
+
+wget https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda_9.1.85_387.26_linux
+wget https://developer.nvidia.com/compute/cuda/9.1/Prod/patches/1/cuda_9.1.85.1_linux
+wget https://developer.nvidia.com/compute/cuda/9.1/Prod/patches/2/cuda_9.1.85.2_linux
+wget -LO https://developer.nvidia.com/compute/cuda/9.1/Prod/patches/3/cuda_9.1.85.3_linux
+
+chmod +x cuda_9.1*
+
+sudo sh cuda_9.1.85_387.26_linux --override --toolkit --silent
+
+sudo sh cuda_9.1.85.1_linux --accept-eula --silent
+sudo sh cuda_9.1.85.2_linux --accept-eula --silent
+sudo sh cuda_9.1.85.3_linux --accept-eula --silent
+
 
 #edit bash:
 "export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/lib/cuda/include:$LD_LIBRARY_PATH
