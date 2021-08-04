@@ -11,6 +11,7 @@ sudo usermod -aG WeberLab johann.drayne
 sudo usermod -aG WeberLab anna.zhu
 
 sudo aptitude install xclip
+sudo aptitude install imagemagick
 
 #copy mnt.sh script over
 
