@@ -184,4 +184,4 @@ docker pull biomedia/dhcp-structural-pipeline:latest
 #Download itksnap: http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.SNAP3
 sudo tar -C /usr/local -zxvf itksnap-3.8.0-20190612-Linux-x86_64.tar.gz
 echo 'export PATH=$PATH:/usr/local/itksnap-3.8.0-20190612-Linux-gcc64/bin' >> ~/.bashrc
-
+source ~/.bashrc
