@@ -68,6 +68,8 @@ export CUDA_HOME=/usr/local/cuda:$CUDA_HOME' >> ~/.bashrc
 source ~/.bashrc
 reboot
 
+#Check: nvcc --version
+
 sudo ln -sf ${FSLDIR}/bin/eddy_cuda9.1 ${FSLDIR}/bin/eddy_cuda
 
 #Anaconda3
