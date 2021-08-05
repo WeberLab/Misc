@@ -26,12 +26,12 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 sudo aptitude install tmux 
 git clone https://github.com/samoshkin/tmux-config.git
 ./tmux-config/install.sh #copy a config file from another computer
-#add to .bashrc:
-"#start tmux automatically
+echo '#start tmux automatically
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     #tmux attach -t default || tmux new -s default
     tmux a
-fi"
+fi' >> ~/.bashrc
+source ~/.bashrc
 
 sudo apt-get update
 sudo apt-get --assume-yes upgrade
@@ -62,16 +62,19 @@ sudo sh cuda_9.1.85.2_linux --accept-eula --silent
 sudo sh cuda_9.1.85.3_linux --accept-eula --silent
 
 
-#edit bash:
-"export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/lib/cuda/include:$LD_LIBRARY_PATH
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/lib/cuda/include:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda/bin:$PATH
-export CUDA_HOME=/usr/local/cuda:$CUDA_HOME"
+export CUDA_HOME=/usr/local/cuda:$CUDA_HOME' >> ~/.bashrc
+source ~/.bashrc
+reboot
 
 sudo ln -sf ${FSLDIR}/bin/eddy_cuda9.1 ${FSLDIR}/bin/eddy_cuda
 
 #Anaconda3
 wget -P /tmp https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-bash /tmp/Anaconda3-2020.02-Linux-x86_64.sh #add export PATH=$PATH:$HOME/anaconda3/bin to .bashrc
+bash /tmp/Anaconda3-2020.02-Linux-x86_64.sh #add 
+echo 'export PATH=$PATH:$HOME/anaconda3/bin' >> ~/.bashrc
+source ~/.bashrc
 conda upgrade -y --all
 
 #FSL
@@ -98,10 +101,10 @@ python -m pip install --user --upgrade fmriprep-docker
 #grab the license from one of the other computers
 wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.1.1/freesurfer-linux-centos8_x86_64-7.1.1.tar.gz
 sudo tar -C /usr/local -zxvpf freesurfer-linux-centos8_x86_64-7.1.1.tar.gz
-#add to .bashrc:
-"export FREESURFER_HOME=/usr/local/freesurfer
+echo 'export FREESURFER_HOME=/usr/local/freesurfer
 export SUBJECTS_DIR=$FREESURFER_HOME/subjects
-source $FREESURFER_HOME/SetUpFreeSurfer.sh"
+source $FREESURFER_HOME/SetUpFreeSurfer.sh' >> ~/.bashrc
+source ~/.bashrc
 
 #ANTs
 sudo apt-get install zlib1g-dev
@@ -118,9 +121,10 @@ make -j 4 2>&1 | tee build.log
 cd ANTS-build
 make install 2>&1 | tee install.log
 #copy install/bin and install/lib to /usr/local/ANTs/
-#add to .bashrc:
-"export ANTSPATH=/usr/local/ANTs/bin
-export PATH=${ANTSPATH}:$PATH"
+
+echo 'export ANTSPATH=/usr/local/ANTs/bin
+export PATH=${ANTSPATH}:$PATH' >> ~/.bashrc
+source ~/.bashrc
 
 #AFNI
 sudo apt-get install -y tcsh xfonts-base libssl-dev       \
@@ -146,27 +150,29 @@ export R_LIBS=$HOME/R
 mkdir  $R_LIBS
 echo  'setenv R_LIBS ~/R'     >> ~/.cshrc
 echo  'export R_LIBS=$HOME/R' >> ~/.bashrc
+source ~/.bashrc
 /usr/local/abin/rPkgsInstall -pkgs ALL #this will take a long time. Seems to install to user specific location...
 
 #add to .bashrc:
-"export PATH=$PATH:/usr/local/abin
+echo 'export PATH=$PATH:/usr/local/abin
 if [ -f /usr/local/abin/.afni/help/all_progs.COMP.bash ]
 then
    source /usr/local/abin/.afni/help/all_progs.COMP.bash
-fi"
+fi' >> ~/.bashrc
+source ~/.bashrc
 
 afni_system_check.py -check_all
 
 ## ICA FIX
 wget http://www.fmrib.ox.ac.uk/~steve/ftp/fix.tar.gz
 sudo tar -C /usr/local -zxvf fix.tar.gz
-#add to .bashrc:
-"export PATH=$PATH:/usr/local/fix"
+echo 'export PATH=$PATH:/usr/local/fix' >> ~/.bashrc
+source ~/.bashrc
 
 ##dcm2
+sudo aptitude install dcm2niix
 pip install dcm2bids
 pip install --upgrade dcm2bids
-sudo aptitude install dcm2niix
 sudo aptitude install jo
 sudo apt-get install nodejs
 sudo apt-get install npm
@@ -177,5 +183,5 @@ docker pull biomedia/dhcp-structural-pipeline:latest
 
 #Download itksnap: http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.SNAP3
 sudo tar -C /usr/local -zxvf itksnap-3.8.0-20190612-Linux-x86_64.tar.gz
-#add path to .bashrc
+echo 'export PATH=$PATH:/usr/local/itksnap-3.8.0-20190612-Linux-gcc64/bin' >> ~/.bashrc
 
