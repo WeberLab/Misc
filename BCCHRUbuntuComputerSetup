@@ -194,3 +194,4 @@ source ~/.bashrc
 ##Troubleshoot (https://linuxhint.com/fix-broken-ubuntu-without-reinstalling/)
 sudo apt update --fix-missing
 sudo apt install -f
+sudo apt-get --with-new-pkgs upgrade
