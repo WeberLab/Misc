@@ -49,6 +49,7 @@ sudo apt-get --assume-yes install build-essential gcc g++ make binutils
 #sudo aptitude install cuda-toolkit-9-1 cuda-command-line-tools-9-1
 
 #This might help here: https://gist.github.com/DaneGardner/accd6fd330348543167719002a661bd5
+#https://medium.com/@stephengregory_69986/installing-cuda-10-1-on-ubuntu-20-04-e562a5e724a0
 
 wget https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda_9.1.85_387.26_linux
 wget https://developer.nvidia.com/compute/cuda/9.1/Prod/patches/1/cuda_9.1.85.1_linux
