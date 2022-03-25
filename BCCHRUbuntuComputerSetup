@@ -9,6 +9,8 @@ sudo usermod -aG WeberLab aweber
 sudo usermod -aG WeberLab olivia.campbell
 sudo usermod -aG WeberLab johann.drayne
 sudo usermod -aG WeberLab anna.zhu
+sudo usermod -aG WeberLab allison.mella
+
 
 sudo aptitude install xclip
 sudo aptitude install imagemagick
