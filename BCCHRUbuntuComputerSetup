@@ -77,12 +77,12 @@ reboot
 
 sudo ln -sf ${FSLDIR}/bin/eddy_cuda9.1 ${FSLDIR}/bin/eddy_cuda
 
-#Anaconda3
-wget -P /tmp https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-bash /tmp/Anaconda3-2020.02-Linux-x86_64.sh #add 
-echo 'export PATH=$PATH:$HOME/anaconda3/bin' >> ~/.bashrc
-source ~/.bashrc
-conda upgrade -y --all
+##Anaconda3
+#wget -P /tmp https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+#bash /tmp/Anaconda3-2020.02-Linux-x86_64.sh #add 
+#echo 'export PATH=$PATH:$HOME/anaconda3/bin' >> ~/.bashrc
+#source ~/.bashrc
+#conda upgrade -y --all
 
 #FSL
 wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslinstaller.py
