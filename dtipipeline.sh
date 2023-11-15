@@ -49,7 +49,7 @@ fslmerge -t DTI_b0sonly b0samephaseA.nii.gz b0oppositephasename.nii.gz
 printf "0 1 0 0.1\n0 -1 0 0.1" > acqparams.txt
 
 echo "topup"
-topup --imain=DTI_b0sonly.nii.gz --datain=acqparams.txt --config=b02b0.cnf --out=DTI_b0sonly_topup
+topup --imain=DTI_b0sonly.nii.gz --datain=acqparams.txt --config=b02b0.cnf --out=DTI_b0sonly_topup --iout=DTI_b0sonly_hifi
 
 echo "applytopup"
 applytopup --imain=$dataname --inindex=1 --datain=acqparams.txt --topup=DTI_b0sonly_topup --out=DTI_topupapplied --method=jac
@@ -73,5 +73,3 @@ echo "dtifit"
 dtifit -k eddy_corrected_data -o dtifit -m DTI_topupapplied_brain_mask.nii.gz -r $dataname.bvec -b $dataname.bval
 
 
-echo "dtifit"
-dtifit -k eddy_corrected_data -o dtifit -m DTI_topupapplied_brain_mask.nii.gz -r $dataname.bvec -b $dataname.bval
